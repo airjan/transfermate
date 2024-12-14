@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<bookset>
+<book>
+	<author> 김작가 </author>
+	<name>한국 소설</name>
+	<pic>helloone </pic>
+</book>
+<book>
+	<author> jan3</author>
+	<name>record4</name>
+		<pic>helloone </pic>
+</book>
+
+<book>
+	<author> jan1</author>
+	<name>record2</name>
+</book>
+
+</bookset>

@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<bookset>
+<book>
+	<author> rodel </author>
+	<name>book of something</name>
+	
+</book>
+<book>
+	<author> rodel2</author>
+	<name>book of something2</name>
+</book>
+
+<book>
+	<author> rodel</author>
+	<name>book of soemthing3</name>
+</book>
+
+</bookset>
+
+
+
+

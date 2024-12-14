@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<bookset>
+<book>
+	<author> huan </author>
+	<name>yang</name>
+	<pic>hello </pic>
+</book>
+<book>
+	<author> jan3</author>
+	<name>record4</name>
+	<data>
+		<abc>yes</abc>
+	</data>
+</book>
+
+<book>
+	<author> jan1</author>
+	<name>record2</name>
+</book>
+
+</bookset>
+
+
+
+
