@@ -16,7 +16,7 @@ class Index
 	public function Render($searchTerm,$currentPage)
 	{
 		try {
-		 $currentPage = $currentPage;
+		$currentPage = $currentPage;
 		$recordsPerPage = 10;
 		$records = $this->books->getBooksWithAuthors($searchTerm,$recordsPerPage,$currentPage);
 		$total = $this->books->getTotalCountBooksWithAuthors($searchTerm);

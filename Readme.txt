@@ -38,6 +38,11 @@ CREATE DATABASE <yourdatabasename>
 2. run cli ( command line) php cron.php 
 	- this will read the xml file in "books_xml"
 
+3. XML sample also provided in the books_xml 
+	- assumption
+		- XML has author / name 
+		- any metadata / object will be save as json 
+
 
 ---------------------FINAL------------------------------
 
