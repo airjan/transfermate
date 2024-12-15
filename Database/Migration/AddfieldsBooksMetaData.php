@@ -1,15 +1,10 @@
 <?php
 namespace Database\Migration; 
-use Database\Database; // Database connection class
+use Database\baseConnection;
 
-class AddfieldsBooksMetaData
+class AddfieldsBooksMetaData extends baseConnection
 {
-	private $db;
-	public function __construct()
-	{
-		$this->db = new Database();
-
-	}
+	
 
 	public function migrate() 
 	{

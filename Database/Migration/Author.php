@@ -1,15 +1,9 @@
 <?php
 namespace Database\Migration; 
-use Database\Database; // Database connection class
-
-class Author
+use Database\baseConnection;
+class Author extends baseConnection
 {
-	private $db;
-	public function __construct()
-	{
-		$this->db = new Database();
-
-	}
+	
 
 	public function migrate() 
 	{

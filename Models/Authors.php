@@ -1,21 +1,17 @@
 <?php
 namespace Models;
 
-use Database\Database;
+use Database\baseConnection;
 use Traits\DBExecution;
 use Exception;
 use PDO;
-class Authors
+class Authors  extends baseConnection
 {
 	use DBExecution;
-	protected $db;
 	protected $tableName = 'authors';
 	protected $allowFields =['name','metadata','filename','folder'];
 	protected $fields =[];
-	public function __construct()
-	{
-		$this->db = new Database();
-	}
+	
 
 	public function findAuthor($name) {
 		$sql ="SELECT * FROM {$this->tableName} where name=:name  LIMIT 1";

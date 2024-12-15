@@ -1,22 +1,18 @@
 <?php
 namespace Models;
 
-use Database\Database;
-
+use Database\baseConnection;
 use Traits\DBExecution;
 use PDO;
 use Exception;
-class Books
+class Books extends baseConnection
 {
 	use DBExecution;
-	protected $db;
+	
 	protected $tableName = 'books';
 	protected $allowFields =['title','author_id','metadata','folder','filename'];
 	protected $fields =[];
-	public function __construct()
-	{
-		$this->db = new Database();
-	}
+	
 
 	public function findbyBook($author_id,$title)
 	{
