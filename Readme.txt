@@ -51,3 +51,10 @@ CREATE DATABASE <yourdatabasename>
    Pagination: applied pagination to limit request in the db sequel, To avoid large data execution
    	LIMIT: 10 per pages 
    	 you may adjust number of items to display in index.php 
+
+
+-----------------REVISION----------------------------
+
+1. PSR formatting
+2. Refactor 
+3. Code beautifier fixer using phpbcf
