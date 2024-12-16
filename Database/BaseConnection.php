@@ -17,9 +17,11 @@
 
 namespace Database;
 
+use Database\Database;
+
 abstract class BaseConnection
 {
-    protected Database $db;
+    protected  $db;
 
     /**
      * BaseConnection constructor.

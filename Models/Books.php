@@ -75,7 +75,7 @@ class Books extends BaseConnection
      * @param  string|null $search Search term for filtering authors by name.
      * @return int The total count of books.
      */
-    public function getTotalCountBooksWithAuthors(?string $search): int
+    public function getTotalCountBooksWithAuthors(string $search): int
     {
         $sql = "SELECT b.id, a.name  as searchfield
                 FROM {$this->tableName} b

@@ -43,9 +43,9 @@ class Index
      * @param string $searchTerm  The search term for filtering books.
      * @param int    $currentPage The current page number for pagination.
      * 
-     * @return void
+     * 
      */
-    public function render(string $searchTerm, int $currentPage): void
+    public function render(string $searchTerm, int $currentPage)
     {
         try {
             $recordsPerPage = 10;
@@ -70,7 +70,7 @@ class Index
      * 
      * @return void
      */
-    public function viewXml(string $folder, string $filename): void
+    public function viewXml(string $folder, string $filename)
     {
         try {
             $folder = urldecode($folder);
