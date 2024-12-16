@@ -58,3 +58,4 @@ CREATE DATABASE <yourdatabasename>
 1. PSR formatting
 2. Refactor 
 3. Code beautifier fixer using phpbcf
+4. now suppor PHP 7.0 
