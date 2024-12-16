@@ -180,7 +180,7 @@ class XmlReader
      * @param string $folder   Directory path.
      * @param string $filename Name of the XML file.
      */
-    private function handleBook(int $authorId, string $title, string $meta, string $folder, string $filename): void
+    private function handleBook(int $authorId, string $title, string $meta, string $folder, string $filename)
     {
         $existingBook = $this->Books->findbyBook($authorId, $title);
 

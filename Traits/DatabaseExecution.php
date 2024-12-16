@@ -70,9 +70,8 @@ trait DatabaseExecution
      * @param string $folder   The folder name
      * @param string $filename The filename
      * 
-     * @return void
      */
-    public function update(int $id, string $meta, string $folder, string $filename): void
+    public function update(int $id, string $meta, string $folder, string $filename)
     {
         $connection = $this->db->getConnect();
         $sql = "UPDATE $this->tableName SET metadata = :metadata, folder = :folder, filename = :filename WHERE id = :id";
@@ -149,7 +148,7 @@ trait DatabaseExecution
      * @param  bool   $single return single record if true otherwise 
      * @return mixed The result of the query.
      */
-    public function executeQuery(string $sql, array $params = [], bool $single = true) 
+    public function executeQuery(string $sql, array $params = [], bool $single = true): array 
     {
         $connection = $this->db->getConnect();
         $prep  = $connection->prepare($sql);
@@ -164,7 +163,7 @@ trait DatabaseExecution
             $result = $prep->fetchAll(PDO::FETCH_ASSOC);
         }
         
-        return $result ?: null;
+        return $result ?: [];
 
     }
 }

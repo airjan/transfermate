@@ -33,7 +33,7 @@ class Authors  extends BaseConnection
      * @param  string $name The name of the author to search for 
      * @return array| null returns the author record as associative array 
      */
-    public function findAuthor(string  $name): ?array
+    public function findAuthor(string  $name): array
     {
         $sql = "SELECT * FROM {$this->tableName} WHERE name=:name  LIMIT 1";
         return $this->executeQuery($sql, [':name' => $name]);

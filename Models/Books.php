@@ -34,7 +34,7 @@ class Books extends BaseConnection
      * @param  string $title     The title of the book.
      * @return array|null The book record as an associative array, or null if not found.
      */
-    public function findbyBook(int $author_id,string $title): ?array
+    public function findbyBook(int $author_id,string $title): array
     {
         $sql ="SELECT * FROM {$this->tableName} WHERE title=:title and author_id=:author_id  LIMIT 1";
         return $this->executeQuery($sql, [':title' => $title, ':author_id' => $author_id]);
@@ -49,7 +49,7 @@ class Books extends BaseConnection
      * @param  int         $currentPage The current page number.
      * @return array The paginated list of books with authors.
      */
-    public function getBooksWithAuthors(string $search,int $perPage,int $currentPage): ?array
+    public function getBooksWithAuthors(string $search,int $perPage,int $currentPage): array
     {
 
         $sql = "SELECT b.id AS book_id, 
