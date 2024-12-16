@@ -50,9 +50,6 @@ th {
   font-size: 16px;
 }
 
-
-
-
 tbody tr {
   opacity: 0;
   transform: translateX(-100%); 
@@ -89,6 +86,7 @@ th {
     cursor: pointer;
     position: relative;
 }
+
 /*--- pagination  --- */
 .pagination {
     margin-top: 20px;

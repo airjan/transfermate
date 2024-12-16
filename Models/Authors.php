@@ -1,31 +1,44 @@
 <?php
+
+/**
+ * Authors model class.
+ * 
+ * This Class is responsible for interacting with the authors table in the database 
+ * It provides methods to retrieve an author by their name 
+ *
+ * @package    TransferMateExam
+ * @subpackage Models
+ * @author     Jan Roxas <janrennel.roxas@gmail.com>
+ * @version    1.0 
+ * @since      2024-12-16
+ * @phpversion 8.0 
+ */
+
 namespace Models;
 
-use Database\baseConnection;
-use Traits\DBExecution;
-use Exception;
-use PDO;
-class Authors  extends baseConnection
+use Database\BaseConnection;
+use Traits\DatabaseExecution;
+
+class Authors  extends BaseConnection
 {
-	use DBExecution;
-	protected $tableName = 'authors';
-	protected $allowFields =['name','metadata','filename','folder'];
-	protected $fields =[];
-	
+    use DatabaseExecution;
 
-	public function findAuthor($name) {
-		$sql ="SELECT * FROM {$this->tableName} where name=:name  LIMIT 1";
-		$connection = $this->db->getConnect();
-		
-		$prep = $connection->prepare($sql);
-		$prep->bindValue(":name", $name,PDO::PARAM_STR);
-		$prep->execute();
-		$result = $prep->fetch(PDO::FETCH_ASSOC);
-		return $result ?: null;
-	}
-	
+    protected $tableName = 'authors';
+    protected $allowFields = ['name', 'metadata', 'filename', 'folder'];
+    protected $fields = [];
 
-	
-	
+    /**
+     * Finds an author by name 
+     *
+     * @param  string $name The name of the author to search for 
+     * @return array| null returns the author record as associative array 
+     */
+    public function findAuthor(string  $name): ?array
+    {
+        $sql = "SELECT * FROM {$this->tableName} WHERE name=:name  LIMIT 1";
+        return $this->executeQuery($sql, [':name' => $name]);
+       
+    }
+
 }
 ?>

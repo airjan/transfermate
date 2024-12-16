@@ -12,7 +12,7 @@
     <h1>List of Authors</h1>
      <div class="search-container">
         <form method="GET" action="">
-            <input type="text" name="search" placeholder="Search by author" value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>">
+            <input type="text" name="search" placeholder="Search by author" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>">
             <input type="submit" value="Search">
         </form>
     </div>
@@ -30,15 +30,17 @@
       <tbody id="table-body">
         <?php
         if (count($records) == 0) {
+
             echo '<tr><td colspan=3>No Records</td></tr>';
+            
         } else {
 
-        ?>
-        <?php foreach($records as $record) {
             ?>
+            <?php foreach($records as $record) {
+                ?>
             <tr>
                 <Td> <?php echo $record['author_name'];?></Td>
-                <td><?= empty($record['book_title']) ? 'No books found' : htmlspecialchars($record['book_title']); ?></td>
+                <td><?php echo empty($record['book_title']) ? 'No books found' : htmlspecialchars($record['book_title']); ?></td>
                 <td>
                     <?php 
                     $published = new DateTime($record['book_created']);
@@ -50,7 +52,7 @@
          
             </tr>
 
-        <?php 
+                <?php 
             }
 
         }
@@ -59,7 +61,7 @@
       </tbody>
     </table>
     </div> <!-- table-container -->
-    <?php include ('pagination.php'); ?>
+    <?php require 'pagination.php'; ?>
 
   </div>
 <script>

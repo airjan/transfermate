@@ -1,32 +1,55 @@
 <?php
+
+/**
+ * Authors model class.
+ * 
+ * This Class is responsible for interacting with the Books table in the database 
+ * It provides methods to retrieve a book by title and author, list books with author information,  and compute pagination.
+ *
+ * @package    TransferMateExam
+ * @subpackage Models
+ * @author     Jan Roxas <janrennel.roxas@gmail.com>
+ * @version    1.0 
+ * @since      2024-12-16
+ * @phpversion 8.0 
+ */
+
 namespace Models;
 
-use Database\baseConnection;
-use Traits\DBExecution;
-use PDO;
-use Exception;
-class Books extends baseConnection
+use Database\BaseConnection;
+use Traits\DatabaseExecution;
+
+class Books extends BaseConnection
 {
-	use DBExecution;
-	
-	protected $tableName = 'books';
-	protected $allowFields =['title','author_id','metadata','folder','filename'];
-	protected $fields =[];
-	
+    use DatabaseExecution;
+    
+    protected $tableName = 'books';
+    protected $allowFields = ['title', 'author_id', 'metadata', 'folder', 'filename'];
+    protected $fields = [];
 
-	public function findbyBook($author_id,$title)
-	{
-		$sql ="SELECT * FROM {$this->tableName} where title=:title and author_id=:author_id  LIMIT 1";
-		$connection = $this->db->getConnect();
-		$prep = $connection->prepare($sql);
-		$prep->bindValue(":title", $title,PDO::PARAM_STR);
-		$prep->bindValue(':author_id',  $author_id);
-		$prep->execute();
-		$result = $prep->fetch(PDO::FETCH_ASSOC);
-		return $result ?: null;
-	}
+    /**
+     * Finds a book by title and author ID.
+     *
+     * @param  int    $author_id The ID of the author.
+     * @param  string $title     The title of the book.
+     * @return array|null The book record as an associative array, or null if not found.
+     */
+    public function findbyBook(int $author_id,string $title): ?array
+    {
+        $sql ="SELECT * FROM {$this->tableName} WHERE title=:title and author_id=:author_id  LIMIT 1";
+        return $this->executeQuery($sql, [':title' => $title, ':author_id' => $author_id]);
+       
+    }
 
-	public function getBooksWithAuthors($search,$perPage,$currentPage)
+    /**
+     * Retrieves books with author details, with pagination support.
+     *
+     * @param  string|null $search      Search term for filtering authors by name.
+     * @param  int         $perPage     The number of records per page.
+     * @param  int         $currentPage The current page number.
+     * @return array The paginated list of books with authors.
+     */
+    public function getBooksWithAuthors(string $search,int $perPage,int $currentPage): ?array
     {
 
         $sql = "SELECT b.id AS book_id, 
@@ -38,42 +61,28 @@ class Books extends baseConnection
                 FROM {$this->tableName} b
                 LEFT JOIN authors a ON b.author_id = a.id " ;
         if ($search) {
-        	$sql .= " WHERE a.name like :search  ";
+            $sql .= " WHERE a.name like :search  ";
         }
-       
-        /*
-        HMM.. much better if we create pagination and move to traits so it can be used as global, 
-        what if there are more than thousands of records fastest way to resolve is use pagination so it will limit the data fetching from database
-        ** other possible solutions 
-        * caching 
-
-         */
-        /*
-        $connection = $this->db->getConnect();
-        $prep = $connection->prepare($sql);
-		
-        if ($search) {
-        	$prep->bindValue(':search', '%' . $search . '%', PDO::PARAM_STR);
-        	
-        }
-       
-        $prep->execute();
-        return $prep->fetchAll(PDO::FETCH_ASSOC);
-    	*/
-        
-       
-        $books = $this->paginate($sql,$search,$perPage,$currentPage);
+         
+        $books = $this->paginate($sql, $search, $perPage, $currentPage);
         return $books;
         
     }
-    // added so we can have the pagination computation
-    public function getTotalCountBooksWithAuthors($search)
+
+    /**
+     * Retrieves the total count of books with authors, for pagination.
+     *
+     * @param  string|null $search Search term for filtering authors by name.
+     * @return int The total count of books.
+     */
+    public function getTotalCountBooksWithAuthors(?string $search): int
     {
-    	$sql = "SELECT b.id, a.name  as searchfield
+        $sql = "SELECT b.id, a.name  as searchfield
                 FROM {$this->tableName} b
                 LEFT JOIN authors a ON b.author_id = a.id";
         return $this->getTotal($sql, $search);
     }
-	
+    
 }
+
 ?>
